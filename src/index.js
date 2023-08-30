@@ -121,7 +121,9 @@ export default class NestedList {
       this.nodes.wrapper.addEventListener('keydown', (event) => {
         switch (event.key) {
           case 'Enter':
-            this.enterPressed(event);
+            if (!event.shiftKey) {
+              this.enterPressed(event);
+            }
             break;
           case 'Backspace':
             this.backspace(event);
@@ -659,7 +661,9 @@ export default class NestedList {
    * @returns {void}
    */
   getOutOfList() {
-    this.currentItem.remove();
+    setTimeout(()=>{
+      this.currentItem.remove();
+    },0)
 
     this.api.blocks.insert();
     this.api.caret.setToBlock(this.api.blocks.getCurrentBlockIndex());

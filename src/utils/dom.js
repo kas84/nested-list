@@ -32,6 +32,10 @@ export function fragmentToString(fragment) {
   const div = make('div');
 
   div.appendChild(fragment);
+  
+  if (!div.innerText.trim()) {
+    return '';
+  }
 
   return div.innerHTML;
 }
